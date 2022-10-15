@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import logo from "../assets/images/logo.png";
+import device from "../device";
 
 const Navbar = () => {
   return (
@@ -15,9 +16,13 @@ const Header = styled.header`
   align-items: center;
   display: flex;
   flex-direction: row;
-  min-height: 10vh;
-  padding: 5vh 5vw;
+  padding: 2vh 2vw 3vh;
   text-align: left;
+
+  @media ${device.laptop} {
+    min-height: 10vh;
+    padding: 5vh 5vw;
+  }
 `;
 
 const Logo = styled.img`

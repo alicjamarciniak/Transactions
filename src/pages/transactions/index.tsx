@@ -11,6 +11,7 @@ const Transactions = () => {
 
 const Container = styled.div`
   flex: 1;
+  padding: 0 10px;
 `;
 
 export default Transactions;
