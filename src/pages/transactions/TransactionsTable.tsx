@@ -1,5 +1,6 @@
 import useTransactions from "../../hooks/useTransactions";
 import { Table } from "../../components";
+import styled from "styled-components";
 
 const TransactionsTable = () => {
   const { transactions } = useTransactions();
@@ -30,7 +31,16 @@ const TransactionsTable = () => {
     },
   ];
 
-  return <Table columns={columns} data={transactions} />;
+  return (
+    <Component>
+      <Table columns={columns} data={transactions} />
+    </Component>
+  );
 };
+
+const Component = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 export default TransactionsTable;
