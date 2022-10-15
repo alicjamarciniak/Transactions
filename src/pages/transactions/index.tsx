@@ -1,8 +1,12 @@
-import React from "react";
 import styled from "styled-components";
+import TransactionsTable from "./TransactionsTable";
 
 const Transactions = () => {
-  return <Container>Transactions</Container>;
+  return (
+    <Container>
+      <TransactionsTable />
+    </Container>
+  );
 };
 
 const Container = styled.div`
