@@ -4,14 +4,14 @@ import styled from "styled-components";
 import device from "../../device";
 
 const TransactionsTable = () => {
-  const { transactions } = useTransactions();
+  const { transactions, currency } = useTransactions();
   const columns = [
     {
       title: "Id",
       field: "id",
     },
     {
-      title: "Amount",
+      title: `Amount (${currency})`,
       field: "amount",
     },
     {

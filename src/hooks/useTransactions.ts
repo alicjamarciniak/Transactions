@@ -10,6 +10,20 @@ type Transaction = {
   description: string;
 };
 
+const formatDate = (date: string): string => {
+  return date.split("T").join(", ");
+};
+
+const parseTransactions = (transactions: Transaction[]): Transaction[] => {
+  return transactions.map((transaction) => {
+    return {
+      ...transaction,
+      id: transaction.id + 1,
+      date: formatDate(transaction.date),
+    };
+  });
+};
+
 const useTransactions = () => {
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -18,7 +32,8 @@ const useTransactions = () => {
     fetch("http://localhost:3000/db")
       .then((res) => res.json())
       .then((res) => {
-        setTransactions(res.transactions);
+        const transactions = parseTransactions(res.transactions);
+        setTransactions(transactions);
         setLoading(false);
       })
       .catch((e) => {
@@ -27,7 +42,7 @@ const useTransactions = () => {
       });
   }, []);
 
-  return { transactions, loading };
+  return { transactions, loading, currency: "PLN" };
 };
 
 export default useTransactions;
