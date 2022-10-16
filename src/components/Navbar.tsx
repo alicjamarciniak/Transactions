@@ -14,6 +14,7 @@ export default Navbar;
 
 const Header = styled.header`
   align-items: center;
+  align-self: stretch;
   display: flex;
   flex-direction: row;
   padding: 2vh 2vw 3vh;
@@ -21,7 +22,7 @@ const Header = styled.header`
 
   @media ${device.laptop} {
     min-height: 10vh;
-    padding: 5vh 5vw;
+    padding: 5vh 10vw;
   }
 `;
 

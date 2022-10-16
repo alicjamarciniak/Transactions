@@ -27,6 +27,7 @@ const Footer = () => {
 };
 
 const Component = styled.div`
+  align-self: stretch;
   position: relative;
 `;
 

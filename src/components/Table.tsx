@@ -8,7 +8,7 @@ type TableProps<T> = {
 
 function Table<T extends Object>({ data, columns }: TableProps<T>) {
   return (
-    <Component>
+    <Component className="Table">
       <StyledTable>
         <Thead>
           <tr>
@@ -34,19 +34,16 @@ function Table<T extends Object>({ data, columns }: TableProps<T>) {
 }
 const Component = styled.div`
   overflow-x: auto;
-  overflow-x: auto;
+  overflow-y: auto;
   max-height: 50vh;
 
   @media ${device.laptop} {
     overflow-y: visible;
-    max-height: none;
+    max-height: 60vh;
   }
 `;
 
 const StyledTable = styled.table`
-  background-color: rgb(220, 223, 227);
-  border-radius: 8px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   color: rgb(28, 28, 28);
   font-size: 12px;
   padding: 10px 5px;
