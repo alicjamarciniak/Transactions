@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-type Transaction = {
+export type Transaction = {
   id: number;
   amount: number;
   beneficiary: string;

@@ -2,12 +2,27 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import arrowBottom from "../assets/icons/arrow-bottom-icon.png";
 
-type SelectProps = {
-  data: { id: number; option: number | string }[];
-  placeholder?: string;
+export type SelectData = {
+  id: number;
+  option: number | string;
 };
 
-const Select = ({ data, placeholder }: SelectProps) => {
+type SelectProps = {
+  data: SelectData[];
+  placeholder?: string;
+  setCheckedIdsCallback: (indexes: number[]) => void;
+  isCheckedByDefault?: boolean;
+  test: number[];
+};
+
+const Select = ({
+  data,
+  placeholder,
+  setCheckedIdsCallback,
+  isCheckedByDefault,
+  test,
+}: SelectProps) => {
+  // const initialize = () => (isCheckedByDefault ? data.map(({ id }) => id) : []);
   const [checkedBoxes, setCheckboxes] = useState<number[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -24,9 +39,28 @@ const Select = ({ data, placeholder }: SelectProps) => {
     }
   };
 
+  // const defaultCheckedBoxes = isCheckedByDefault
+  //   ? data.map(({ id }) => id)
+  //   : [];
+
   useEffect(() => {
-    // console.log(checkedBoxes);
-  }, [checkedBoxes]);
+    setCheckedIdsCallback(checkedBoxes);
+  }, [checkedBoxes, setCheckedIdsCallback]);
+
+  // useEffect(() => {
+  //   console.log("data", data);
+  //   setCheckboxes(defaultCheckedBoxes);
+  // }, [defaultCheckedBoxes]);
+
+  // useEffect(() => {
+  //   setCheckboxes(test);
+  // }, [test]);
+
+  const handleAll = (e) => {
+    if (e.target.checked) {
+      setCheckboxes(test);
+    }
+  };
 
   return (
     <>
@@ -37,7 +71,7 @@ const Select = ({ data, placeholder }: SelectProps) => {
       <Checkboxes expanded={isExpanded}>
         <div>
           <label>
-            <input type="checkbox" id="all" />
+            <input type="checkbox" id="all" checked={} onChange={handleAll} />
             Select All
           </label>
         </div>
