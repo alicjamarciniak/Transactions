@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Card, Select, SelectData } from "../../components";
 import device from "../../device";
-import useTransactions, { Transaction } from "../../hooks/useTransactions";
+import { Transaction } from "../../hooks/useTransactions";
 
 const prepareDataForSelect = (transactions: Transaction[]) =>
   transactions.map(({ id, beneficiary }) => ({
@@ -16,10 +16,12 @@ const removeBeneficiaryDuplicates = (filterData: SelectData[]) =>
       index === self.findIndex((t) => t.option === value.option)
   );
 
-const Filter = () => {
-  const { transactions } = useTransactions();
-  const [ids, setIds] = useState<number[]>([]);
+type FilterProps = {
+  transactions: Transaction[];
+};
 
+const Filter = ({ transactions }: FilterProps) => {
+  const [ids, setIds] = useState<number[]>([]);
   const selectData = removeBeneficiaryDuplicates(
     prepareDataForSelect(transactions)
   );

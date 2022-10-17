@@ -1,10 +1,26 @@
-import useTransactions from "../../hooks/useTransactions";
-import { Table, Card } from "../../components";
+import { Transaction } from "../../hooks/useTransactions";
+import { Table, Card, Pagination } from "../../components";
 import styled from "styled-components";
 import device from "../../device";
+import { useEffect, useState } from "react";
+// import usePagination from "../../hooks/usePagination";
 
-const TransactionsTable = () => {
-  const { transactions, currency } = useTransactions();
+// export const PaginationContext = React.createContext({
+//   currentPageContent: [],
+//   setCurrentPageContent: () => {},
+// });
+
+const NUMBER_OF_ITEMS = 10;
+
+type TransactionsTableProps = {
+  transactions: Transaction[];
+  currency: string;
+};
+
+const TransactionsTable = ({
+  transactions,
+  currency,
+}: TransactionsTableProps) => {
   const columns = [
     {
       title: "Id",
@@ -32,11 +48,19 @@ const TransactionsTable = () => {
     },
   ];
 
+  // TODO: Unfortunately I couldn't fix the pagination in time
+  // const [currentRecords, setCurrentRecords] = useState<Transaction[]>([]);
+
   return (
     <Component>
       <StyledCard>
         <Title>Transactions List</Title>
         <Table columns={columns} data={transactions} />
+        <Pagination
+          array={transactions}
+          pageLimit={NUMBER_OF_ITEMS}
+          // setRecordsCallback={setCurrentRecords}
+        />
       </StyledCard>
     </Component>
   );

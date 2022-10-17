@@ -56,7 +56,7 @@ const Select = ({
   //   setCheckboxes(test);
   // }, [test]);
 
-  const handleAll = (e) => {
+  const handleAll = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setCheckboxes(test);
     }
@@ -71,7 +71,7 @@ const Select = ({
       <Checkboxes expanded={isExpanded}>
         <div>
           <label>
-            <input type="checkbox" id="all" checked={} onChange={handleAll} />
+            <input type="checkbox" id="all" onChange={handleAll} />
             Select All
           </label>
         </div>

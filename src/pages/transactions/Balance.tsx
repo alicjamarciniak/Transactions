@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { Card } from "../../components";
 import device from "../../device";
-import useTransactions from "../../hooks/useTransactions";
+import { Transaction } from "../../hooks/useTransactions";
 
-const Balance = () => {
-  const { transactions, currency } = useTransactions();
+type BalanceProps = {
+  transactions: Transaction[];
+  currency: string;
+};
+
+const Balance = ({ transactions, currency }: BalanceProps) => {
   const balance = transactions
     .reduce((accumulator, transaction) => accumulator + transaction.amount, 0)
     .toFixed(2);

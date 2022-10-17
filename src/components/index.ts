@@ -4,3 +4,4 @@ export type { SelectData } from "./Select";
 export { default as Footer } from "./Footer";
 export { default as Navbar } from "./Navbar";
 export { default as Table } from "./Table";
+export { default as Pagination } from "./Pagination";

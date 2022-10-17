@@ -4,8 +4,11 @@ import AddForm from "./AddForm";
 import Balance from "./Balance";
 import Filter from "./Filter";
 import device from "../../device";
+import useTransactions from "../../hooks/useTransactions";
 
 const Transactions = () => {
+  const { transactions, currency } = useTransactions();
+
   return (
     <Container className="transactions">
       <Panel>
@@ -13,11 +16,11 @@ const Transactions = () => {
           <AddForm />
         </Section>
         <Section>
-          <StyledBalance />
-          <Filter />
+          <StyledBalance transactions={transactions} currency={currency} />
+          <Filter transactions={transactions} />
         </Section>
       </Panel>
-      <TransactionsTable />
+      <TransactionsTable transactions={transactions} currency={currency} />
     </Container>
   );
 };
