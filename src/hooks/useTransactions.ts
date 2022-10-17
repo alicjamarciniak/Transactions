@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export type Transaction = {
   id: number;
@@ -29,10 +30,10 @@ const useTransactions = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/db")
-      .then((res) => res.json())
-      .then((res) => {
-        const transactions = parseTransactions(res.transactions);
+    axios
+      .get("http://localhost:3000/transactions")
+      .then(({ data }) => {
+        const transactions = parseTransactions(data);
         setTransactions(transactions);
         setLoading(false);
       })

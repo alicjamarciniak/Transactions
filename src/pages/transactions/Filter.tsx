@@ -26,9 +26,7 @@ const Filter = ({ transactions }: FilterProps) => {
     prepareDataForSelect(transactions)
   );
 
-  useEffect(() => {
-    console.log(ids);
-  }, [ids]);
+  useEffect(() => {}, [ids]);
 
   return (
     <Component className="Card">

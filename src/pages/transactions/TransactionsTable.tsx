@@ -2,7 +2,7 @@ import { Transaction } from "../../hooks/useTransactions";
 import { Table, Card, Pagination } from "../../components";
 import styled from "styled-components";
 import device from "../../device";
-import { useEffect, useState } from "react";
+import axios from "axios";
 // import usePagination from "../../hooks/usePagination";
 
 // export const PaginationContext = React.createContext({
@@ -51,11 +51,17 @@ const TransactionsTable = ({
   // TODO: Unfortunately I couldn't fix the pagination in time
   // const [currentRecords, setCurrentRecords] = useState<Transaction[]>([]);
 
+  const onDelete = (index: number) => {
+    axios.delete(`http://localhost:3000/transactions/${index - 1}`);
+  };
+
+  // TODO: Add rerendering after delete
+
   return (
     <Component>
       <StyledCard>
         <Title>Transactions List</Title>
-        <Table columns={columns} data={transactions} />
+        <Table columns={columns} data={transactions} onDelete={onDelete} />
         <Pagination
           array={transactions}
           pageLimit={NUMBER_OF_ITEMS}

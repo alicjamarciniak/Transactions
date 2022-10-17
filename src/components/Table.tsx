@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import device from "../device";
+import deleteIcon from "../assets/icons/delete-icon.png";
 
 type TableProps<T> = {
-  data: T[];
+  data: ({ id: number } & T)[];
   columns: { title: string; field: string }[];
+  onDelete?: (index: number) => void;
 };
 
-function Table<T extends Object>({ data, columns }: TableProps<T>) {
+function Table<T extends Object>({ data, columns, onDelete }: TableProps<T>) {
   return (
     <Component className="Table">
       <StyledTable>
@@ -25,6 +27,16 @@ function Table<T extends Object>({ data, columns }: TableProps<T>) {
                   {row.hasOwnProperty(field) ? row[field] : null}
                 </Td>
               ))}
+              {onDelete ? (
+                <Td>
+                  <DeleteIcon
+                    src={deleteIcon}
+                    onClick={() => {
+                      onDelete(row.id);
+                    }}
+                  ></DeleteIcon>
+                </Td>
+              ) : null}
             </Tr>
           ))}
         </tbody>
@@ -83,6 +95,10 @@ const Td = styled.td`
     max-width: none;
     padding: 15px;
   }
+`;
+
+const DeleteIcon = styled.img`
+  height: 20px;
 `;
 
 export default Table;
