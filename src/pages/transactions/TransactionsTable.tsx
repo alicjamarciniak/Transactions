@@ -62,7 +62,7 @@ const TransactionsTable = ({
       <StyledCard>
         <Title>Transactions List</Title>
         <Table columns={columns} data={transactions} onDelete={onDelete} />
-        <Pagination
+        <StyledPagination
           array={transactions}
           pageLimit={NUMBER_OF_ITEMS}
           // setRecordsCallback={setCurrentRecords}
@@ -92,6 +92,10 @@ const Title = styled.h4`
     font-size: 20px;
     padding: 0 20px;
   }
+`;
+
+const StyledPagination = styled(Pagination)`
+  margin-top: 10px;
 `;
 
 export default TransactionsTable;

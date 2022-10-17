@@ -64,33 +64,40 @@ const Select = ({
 
   return (
     <>
-      <SelectBox onClick={toggleList}>
-        {placeholder}
-        <SelectIcon src={arrowBottom} />
-      </SelectBox>
-      <Checkboxes expanded={isExpanded}>
-        <div>
-          <label>
-            <input type="checkbox" id="all" onChange={handleAll} />
-            Select All
-          </label>
-        </div>
-        {data.map((element) => (
-          <div key={`option-${element.id}`}>
+      <Wrapper>
+        <SelectBox onClick={toggleList}>
+          {placeholder}
+          <SelectIcon src={arrowBottom} />
+        </SelectBox>
+        <Checkboxes expanded={isExpanded}>
+          <div>
             <label>
-              <input
-                type="checkbox"
-                id={element.id.toString()}
-                onChange={handleOnChange}
-              />
-              {element.option}
+              <input type="checkbox" id="all" onChange={handleAll} />
+              Select All
             </label>
           </div>
-        ))}
-      </Checkboxes>
+          {data.map((element) => (
+            <div key={`option-${element.id}`}>
+              <label>
+                <input
+                  type="checkbox"
+                  id={element.id.toString()}
+                  onChange={handleOnChange}
+                />
+                {element.option}
+              </label>
+            </div>
+          ))}
+        </Checkboxes>
+      </Wrapper>
     </>
   );
 };
+
+const Wrapper = styled.div`
+  display: inline-flex;
+  position: relative;
+`;
 
 const SelectBox = styled.div`
   border: 2px solid rgb(120, 120, 120);
@@ -100,6 +107,8 @@ const SelectBox = styled.div`
   padding: 10px;
   position: relative;
   width: 250px;
+  display: inline-flex;
+  margin: auto;
 `;
 
 const SelectIcon = styled.img`
@@ -123,6 +132,8 @@ const Checkboxes = styled.div<{ expanded: boolean }>`
   width: 250px;
   height: 30vh;
   overflow: auto;
+  margin: auto;
+  top: 100%;
 `;
 
 export default Select;

@@ -31,6 +31,7 @@ const Filter = ({ transactions }: FilterProps) => {
   return (
     <Component className="Card">
       <Card>
+        <h3>Filter by beneficiaries</h3>
         <Select
           data={selectData}
           placeholder="Select beneficiaries"
@@ -38,7 +39,6 @@ const Filter = ({ transactions }: FilterProps) => {
           isCheckedByDefault={true}
           test={[1, 2, 3, 4]}
         />
-        <button>Reset filter</button>
       </Card>
     </Component>
   );

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import usePagination from "../hooks/usePagination";
 
@@ -6,12 +5,14 @@ type PaginationProps<T> = {
   array: T[];
   pageLimit: number;
   setRecordsCallback?: any;
+  className?: string;
 };
 
 function Pagination<T extends Object>({
   array,
   pageLimit,
   setRecordsCallback,
+  className,
 }: PaginationProps<T>) {
   const { pageCount, getCurrentRecords, setCurrentPage } = usePagination(
     array,
@@ -20,11 +21,11 @@ function Pagination<T extends Object>({
 
   const handleClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    setRecordsCallback(getCurrentRecords());
+    // setRecordsCallback(getCurrentRecords());
   };
 
   return (
-    <Component className="pagination">
+    <Component className={`pagination ${className}`}>
       {[...Array(pageCount)].map((v, i) => (
         <PageIndex
           key={`page-index-${i}`}

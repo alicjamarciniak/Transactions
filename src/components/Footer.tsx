@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import device from "../device";
 
 const Footer = () => {
   return (
@@ -29,6 +30,10 @@ const Footer = () => {
 const Component = styled.div`
   align-self: stretch;
   position: relative;
+
+  @media ${device.laptop} {
+    margin-top: 40px;
+  }
 `;
 
 const Background = styled.div`
